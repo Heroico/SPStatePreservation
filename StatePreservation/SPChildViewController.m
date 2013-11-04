@@ -14,6 +14,8 @@
 
 @implementation SPChildViewController
 
+#define kChildItemCellReuseIdentifier @"ChildItemCellReuseIdentifier"
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -21,7 +23,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.title = self.item.name;
+    [self setupUIFromItem];
 }
 
 - (void)didReceiveMemoryWarning
@@ -30,4 +32,40 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - UITableView Stuff
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.item.children.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kChildItemCellReuseIdentifier];
+    
+    SPItem *item = self.item.children[indexPath.row];
+    cell.textLabel.text = item.name;
+    if (item.children.count) {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
+    
+    return cell;
+}
+
+#pragma mark - Utils 
+
+- (void)setupUIFromItem {
+    self.title = self.item.name;
+    self.optionSwitch.on = self.item.option;
+}
+
+- (IBAction)optionChanged:(UISwitch *)sender {
+    self.item.option = sender.on;
+}
 @end

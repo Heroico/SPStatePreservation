@@ -11,5 +11,8 @@
 @class SPItem;
 
 @interface SPChildViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UISwitch *optionSwitch;
 @property (strong, nonatomic) SPItem *item;
+- (IBAction)optionChanged:(UISwitch *)sender;
 @end

@@ -65,8 +65,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.selectedItem = self.items[indexPath.row];
-    [self performSegueWithIdentifier:kMainToChildSegueIdentifier sender:self];
+    SPItem *selectedItem = self.items[indexPath.row];
+    if (selectedItem.children.count) {
+        self.selectedItem = selectedItem;
+        [self performSegueWithIdentifier:kMainToChildSegueIdentifier sender:self];
+    }
 }
 
 #pragma mark - UI Interaction
@@ -100,6 +103,7 @@
     for (NSDictionary *jsonItem in jsonItems) {
         SPItem *item = [[SPItem alloc] init];
         item.name = jsonItem[@"name"];
+        item.option = NO;
         if ([jsonItem[@"children"] isKindOfClass:[NSArray class]]) {
             [self loadJsonItems:jsonItem[@"children"] intoArray:item.children];
         }
