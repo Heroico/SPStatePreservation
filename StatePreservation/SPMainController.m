@@ -7,6 +7,7 @@
 //
 
 #import "SPMainController.h"
+#import "SPItem.h"
 
 @interface SPMainController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic,strong) NSMutableArray *items;
@@ -20,6 +21,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self loadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,8 +43,39 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kItemViewCellReuseIdentifier];
     
+    SPItem *item = self.items[indexPath.row];
+    cell.textLabel.text = item.name;
     
     return cell;
+}
+
+#pragma mark - utils
+
+- (void)loadData {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"data.json"];
+    NSData *jsonData = [NSData dataWithContentsOfFile:dataPath];
+    NSError *error;
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&error];
+    if (error) {
+        DDLogError(@"Error loading data: %@",error);
+    }
+    NSArray *jsonItems = json[@"items"];
+    NSMutableArray *items = [NSMutableArray array];
+    [self loadJsonItems:jsonItems intoArray:items];
+    self.items = items;
+}
+
+- (void)loadJsonItems:(NSArray *)jsonItems intoArray:(NSMutableArray *)items {
+    for (NSDictionary *jsonItem in jsonItems) {
+        SPItem *item = [[SPItem alloc] init];
+        item.name = jsonItem[@"name"];
+        if ([jsonItem[@"children"] isKindOfClass:[NSArray class]]) {
+            [self loadJsonItems:jsonItem[@"children"] intoArray:item.children];
+        }
+        [items addObject:item];
+    }
 }
 
 @end
