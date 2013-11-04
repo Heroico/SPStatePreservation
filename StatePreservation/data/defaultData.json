@@ -98,7 +98,16 @@
   },
   {
   "name":"x",
-  "children":null
+  "children":[
+    {
+    "name":"1",
+    "children": null
+    },
+    {
+    "name":"2",
+    "children":null
+    }
+  ]
   }
 ]
 }

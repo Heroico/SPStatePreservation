@@ -1,5 +1,5 @@
 //
-//  SPViewController.h
+//  SPChildViewController.h
 //  StatePreservation
 //
 //  Created by Alvaro Barbeira on 11/4/13.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SPMainController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *tableView;
+@class SPItem;
 
+@interface SPChildViewController : UIViewController
+@property (strong, nonatomic) SPItem *item;
 @end

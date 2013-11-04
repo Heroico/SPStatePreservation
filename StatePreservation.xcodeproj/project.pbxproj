@@ -23,6 +23,7 @@
 		38FD661D1827BD6600458B7B /* StatePreservationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD661C1827BD6600458B7B /* StatePreservationTests.m */; };
 		38FD66291827BEC500458B7B /* SPItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD66281827BEC500458B7B /* SPItem.m */; };
 		38FD662B1827C1DC00458B7B /* defaultData.json in Resources */ = {isa = PBXBuildFile; fileRef = 38FD662A1827C1DC00458B7B /* defaultData.json */; };
+		38FD66381827CD8E00458B7B /* SPChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FD66371827CD8E00458B7B /* SPChildViewController.m */; };
 		A3810E093E8E417D8DC6CE6F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F723178A0BB4B0A880FBC4E /* libPods.a */; };
 		C35C655FFD38474F89A0FE51 /* libPods-test.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D8B8A1B711EF498F93EDC2FF /* libPods-test.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,8 @@
 		38FD66271827BEC500458B7B /* SPItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SPItem.h; path = Model/SPItem.h; sourceTree = "<group>"; };
 		38FD66281827BEC500458B7B /* SPItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SPItem.m; path = Model/SPItem.m; sourceTree = "<group>"; };
 		38FD662A1827C1DC00458B7B /* defaultData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = defaultData.json; path = data/defaultData.json; sourceTree = "<group>"; };
+		38FD66361827CD8E00458B7B /* SPChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPChildViewController.h; sourceTree = "<group>"; };
+		38FD66371827CD8E00458B7B /* SPChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPChildViewController.m; sourceTree = "<group>"; };
 		4F723178A0BB4B0A880FBC4E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C02F0C2DCC41719CD92867 /* Pods-test.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test.xcconfig"; path = "Pods/Pods-test.xcconfig"; sourceTree = "<group>"; };
 		D8B8A1B711EF498F93EDC2FF /* libPods-test.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -135,6 +138,8 @@
 				38FD66031827BD6600458B7B /* Main.storyboard */,
 				38FD66061827BD6600458B7B /* SPMainController.h */,
 				38FD66071827BD6600458B7B /* SPMainController.m */,
+				38FD66361827CD8E00458B7B /* SPChildViewController.h */,
+				38FD66371827CD8E00458B7B /* SPChildViewController.m */,
 				38FD66091827BD6600458B7B /* Images.xcassets */,
 				38FD65F81827BD6600458B7B /* Supporting Files */,
 			);
@@ -346,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				38FD66381827CD8E00458B7B /* SPChildViewController.m in Sources */,
 				38FD65FE1827BD6600458B7B /* main.m in Sources */,
 				38FD66291827BEC500458B7B /* SPItem.m in Sources */,
 				38FD66081827BD6600458B7B /* SPMainController.m in Sources */,

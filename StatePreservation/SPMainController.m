@@ -8,13 +8,16 @@
 
 #import "SPMainController.h"
 #import "SPItem.h"
+#import "SPChildViewController.h"
 
 @interface SPMainController ()<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic,strong) NSMutableArray *items;
+@property (strong, nonatomic) SPItem *selectedItem;
 @end
 
 @implementation SPMainController
 
+#define kMainToChildSegueIdentifier @"mainToChildSegueIdentifier"
 #define kItemViewCellReuseIdentifier @"ItemViewCellIReuseIdentifier"
 
 - (void)viewDidLoad
@@ -22,6 +25,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     [self loadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,8 +53,29 @@
     
     SPItem *item = self.items[indexPath.row];
     cell.textLabel.text = item.name;
+    if (item.children.count) {
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    self.selectedItem = self.items[indexPath.row];
+    [self performSegueWithIdentifier:kMainToChildSegueIdentifier sender:self];
+}
+
+#pragma mark - UI Interaction
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ( [segue.identifier isEqualToString:kMainToChildSegueIdentifier]) {
+        SPChildViewController *child = (SPChildViewController *)segue.destinationViewController;
+        child.item = self.selectedItem;
+    }
 }
 
 #pragma mark - utils
