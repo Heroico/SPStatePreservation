@@ -16,6 +16,10 @@
 
 - (NSArray *)items;
 
+- (void)setSelectedItem:(SPItem *)item;
+
+- (SPItem *)selectedItem;
+
 - (void)saveChangesForItem:(SPItem *)item;
 
 @end

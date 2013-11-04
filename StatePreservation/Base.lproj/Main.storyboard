@@ -7,7 +7,7 @@
         <!--Main Controller - Item List-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="SPMainController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainStoryboardMainControllerRestorationIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vXZ-lx-hvc" customClass="SPMainController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cVB-ho-rHa"/>
                         <viewControllerLayoutGuide type="bottom" id="Kg3-H1-pxA"/>
@@ -66,7 +66,7 @@
         <!--Child View Controller-->
         <scene sceneID="CXN-3Z-F2Y">
             <objects>
-                <viewController id="APK-9u-WTq" customClass="SPChildViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainStoryboardChildControllerIdentifier" useStoryboardIdentifierAsRestorationIdentifier="YES" id="APK-9u-WTq" customClass="SPChildViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="QRm-i2-2al"/>
                         <viewControllerLayoutGuide type="bottom" id="t4V-d5-Kip"/>
@@ -150,6 +150,9 @@
                                     <constraint firstAttribute="width" constant="49" id="bvr-gV-IqW"/>
                                     <constraint firstAttribute="height" constant="31" id="j8M-wF-69f"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="nonrelatedChanged:" destination="APK-9u-WTq" eventType="valueChanged" id="KJi-d5-7j8"/>
+                                </connections>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -185,7 +188,7 @@
         <!--Navigation Controller-->
         <scene sceneID="8aX-E6-4i9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pwC-lh-lC6" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainStoryboardNavigationControllerIdentifier" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pwC-lh-lC6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="hcO-SC-o3N">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

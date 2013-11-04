@@ -16,4 +16,5 @@
 @property (weak, nonatomic) IBOutlet UISwitch *nonrelatedSwitch;
 @property (strong, nonatomic) SPItem *item;
 - (IBAction)optionChanged:(UISwitch *)sender;
+- (IBAction)nonrelatedChanged:(UISwitch *)sender;
 @end

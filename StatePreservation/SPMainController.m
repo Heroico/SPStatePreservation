@@ -68,18 +68,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPItem *selectedItem = self.items[indexPath.row];
     if (selectedItem.children.count) {
-        self.selectedItem = selectedItem;
+        [[SPModel sharedModel] setSelectedItem:selectedItem];
         [self performSegueWithIdentifier:kMainToChildSegueIdentifier sender:self];
     }
 }
 
 #pragma mark - UI Interaction
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ( [segue.identifier isEqualToString:kMainToChildSegueIdentifier]) {
-        SPChildViewController *child = (SPChildViewController *)segue.destinationViewController;
-        child.item = self.selectedItem;
-    }
-}
 
 @end
