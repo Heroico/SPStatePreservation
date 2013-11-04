@@ -11,7 +11,7 @@
 #import "SPItem+Model.h"
 #import "SPModel.h"
 
-@interface SPChildViewController ()
+@interface SPChildViewController ()<UITableViewDataSource, UITableViewDelegate, UIDataSourceModelAssociation>
 @end
 
 @implementation SPChildViewController
@@ -88,6 +88,35 @@
     // The switch's state is not preserved by UIKit. So we restore it with a custom mechanism.
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     self.nonrelatedSwitch.on = [defaults boolForKey:kNonRelatedSwitch];
+}
+
+#pragma mark - UI interaction
+
+-(NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)idx inView:(UIView *)view {
+    NSString *identifier = nil;
+    if (idx && view)
+    {
+        SPItem *item = self.item.children[idx.row];
+        identifier = item.name;
+    }
+    return identifier;
+}
+
+- (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view {
+    NSIndexPath *indexPath = nil;
+    if (identifier && view) {
+        NSInteger row = [self.item.children indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            SPItem *item = (SPItem *)obj;
+            BOOL found = [item.name isEqualToString:identifier];
+            *stop = found;
+            return found;
+        }];
+        
+        if (row != NSNotFound) {
+            indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        }
+    }
+    return indexPath;
 }
 
 #pragma mark - UI interaction
