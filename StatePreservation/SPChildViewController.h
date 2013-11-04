@@ -13,6 +13,7 @@
 @interface SPChildViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UISwitch *optionSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *nonrelatedSwitch;
 @property (strong, nonatomic) SPItem *item;
 - (IBAction)optionChanged:(UISwitch *)sender;
 @end
