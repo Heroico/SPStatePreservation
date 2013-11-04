@@ -11,7 +11,7 @@
 #import "SPItem.h"
 #import "SPChildViewController.h"
 
-@interface SPMainController ()<UITableViewDataSource, UITableViewDelegate>
+@interface SPMainController ()<UITableViewDataSource, UITableViewDelegate, UIDataSourceModelAssociation>
 @property (nonatomic,strong) NSArray *items;
 @property (strong, nonatomic) SPItem *selectedItem;
 @end
@@ -68,18 +68,41 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SPItem *selectedItem = self.items[indexPath.row];
     if (selectedItem.children.count) {
-        self.selectedItem = selectedItem;
+        [[SPModel sharedModel] setSelectedItem:selectedItem];
         [self performSegueWithIdentifier:kMainToChildSegueIdentifier sender:self];
     }
 }
 
+#pragma mark - UI preservation
+
+-(NSString *)modelIdentifierForElementAtIndexPath:(NSIndexPath *)idx inView:(UIView *)view {
+    NSString *identifier = nil;
+    if (idx && view)
+    {
+        SPItem *item = self.items[idx.row];
+        identifier = item.name;
+    }
+    return identifier;
+}
+
+- (NSIndexPath *)indexPathForElementWithModelIdentifier:(NSString *)identifier inView:(UIView *)view {
+    NSIndexPath *indexPath = nil;
+    if (identifier && view) {
+        NSInteger row = [self.items indexOfObjectPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
+            SPItem *item = (SPItem *)obj;
+            BOOL found = [item.name isEqualToString:identifier];
+            *stop = found;
+            return found;
+        }];
+        
+        if (row != NSNotFound) {
+            indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+        }
+    }
+    return indexPath;
+}
+
 #pragma mark - UI Interaction
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ( [segue.identifier isEqualToString:kMainToChildSegueIdentifier]) {
-        SPChildViewController *child = (SPChildViewController *)segue.destinationViewController;
-        child.item = self.selectedItem;
-    }
-}
 
 @end

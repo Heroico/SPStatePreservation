@@ -12,6 +12,7 @@
 
 @interface SPModel()
 @property (nonatomic,strong) NSMutableArray *objects;
+@property (nonatomic,strong) NSNumber *selected;
 @end
 
 @implementation SPModel
@@ -38,6 +39,25 @@
 - (void)saveChangesForItem:(SPItem *)item {
     // :/
     [self saveEverything];
+}
+
+- (void)setSelectedItem:(SPItem *)item {
+    NSInteger index = [self.objects indexOfObject:item];
+    if (index != NSNotFound) {
+        self.selected = @(index);
+    }
+}
+
+- (SPItem *)selectedItem {
+    if (!self.selected) {
+        [self loadData];
+    }
+    
+    SPItem *item = nil;
+    if (self.selected && [self.selected integerValue]>0 && [self.selected integerValue]<self.objects.count) {
+        item = self.objects[[self.selected integerValue]];
+    }
+    return item;
 }
 
 #pragma mark - private methods
@@ -68,6 +88,8 @@
     NSMutableArray *items = [NSMutableArray array];
     [self loadJsonItems:jsonItems intoArray:items];
     self.objects = items;
+    
+    self.selected = json[@"selected"];
 }
 
 - (void)loadJsonItems:(NSArray *)jsonItems intoArray:(NSMutableArray *)items {
@@ -94,7 +116,9 @@
     for (SPItem *item in self.objects) {
         [items addObject:[item toDict]];
     }
-    NSDictionary *jsonObject = @{@"items": items};
+    NSDictionary *jsonObject = @{
+        @"items": items,
+        @"selected": self.selected};
     NSError *jsonError = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonObject options:NSJSONWritingPrettyPrinted error:&jsonError];
     if (jsonError) {
