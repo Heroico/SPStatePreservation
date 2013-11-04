@@ -1,0 +1,20 @@
+PODS:
+  - CocoaLumberjack (1.6.2)
+  - Kiwi/ARC (2.2.3)
+  - Kiwi/NonARC (2.2.3)
+  - Kiwi/XCTest (2.2.3):
+    - Kiwi/ARC
+    - Kiwi/NonARC
+  - ZauberCommons (0.1.0)
+
+DEPENDENCIES:
+  - CocoaLumberjack (~> 1.6)
+  - Kiwi/XCTest
+  - ZauberCommons (= 0.1.0)
+
+SPEC CHECKSUMS:
+  CocoaLumberjack: 2619775f386bbec1e870eddb5040f870c68726b1
+  Kiwi: 04c51e880831d291748ec702d42c4101f7eb95c9
+  ZauberCommons: bbda2befb5ccecaee4771fbe29a3d942111e516c
+
+COCOAPODS: 0.26.2
