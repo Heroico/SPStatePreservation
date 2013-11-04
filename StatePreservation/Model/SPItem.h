@@ -11,7 +11,7 @@
 @interface SPItem : NSObject
 
 @property (copy, nonatomic) NSString *name;
-@property (strong, nonatomic) NSMutableArray *children;
+@property (readonly, nonatomic) NSMutableArray *children;
 @property (assign, nonatomic) BOOL option;
 
 @end

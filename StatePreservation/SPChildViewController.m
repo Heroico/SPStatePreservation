@@ -8,6 +8,7 @@
 
 #import "SPChildViewController.h"
 #import "SPItem.h"
+#import "SPItem+Model.h"
 
 @interface SPChildViewController ()
 @end
@@ -24,6 +25,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self setupUIFromItem];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.item saveChanges];
 }
 
 - (void)didReceiveMemoryWarning

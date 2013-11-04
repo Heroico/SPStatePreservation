@@ -16,7 +16,6 @@
 {
     [DDLog addLogger:[DDASLLogger sharedInstance]];
     [DDLog addLogger:[DDTTYLogger sharedInstance]];
-    [self dataWrangling];
     return YES;
 }
 							
@@ -45,24 +44,6 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-}
-
-#pragma mark - Utils
-
-- (void)dataWrangling {
-    NSFileManager *manager = [NSFileManager defaultManager];
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *dataPath = [documentsDirectory stringByAppendingPathComponent:@"data.json"];
-    if (![manager fileExistsAtPath:dataPath]) {
-        NSString *defaultDataPath = [[NSBundle mainBundle] pathForResource:@"defaultData" ofType:@"json"];
-        NSData *data = [NSData dataWithContentsOfFile:defaultDataPath];
-        NSError *error = nil;
-        [data writeToFile:dataPath options:NSDataWritingAtomic error:&error];
-        if (error) {
-            DDLogError(@"Error writing file: %@", error);
-        }
-    }
 }
 
 @end

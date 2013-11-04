@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		384CA5A01827E073003C944C /* SPModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 384CA59F1827E073003C944C /* SPModel.m */; };
+		384CA5A31827E3CA003C944C /* SPItem+Model.m in Sources */ = {isa = PBXBuildFile; fileRef = 384CA5A21827E3CA003C944C /* SPItem+Model.m */; };
 		38FD65F21827BD6600458B7B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FD65F11827BD6600458B7B /* Foundation.framework */; };
 		38FD65F41827BD6600458B7B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FD65F31827BD6600458B7B /* CoreGraphics.framework */; };
 		38FD65F61827BD6600458B7B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38FD65F51827BD6600458B7B /* UIKit.framework */; };
@@ -39,6 +41,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		384CA59E1827E073003C944C /* SPModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SPModel.h; sourceTree = "<group>"; };
+		384CA59F1827E073003C944C /* SPModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SPModel.m; sourceTree = "<group>"; };
+		384CA5A11827E3CA003C944C /* SPItem+Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPItem+Model.h"; sourceTree = "<group>"; };
+		384CA5A21827E3CA003C944C /* SPItem+Model.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPItem+Model.m"; sourceTree = "<group>"; };
 		38FD65EE1827BD6600458B7B /* StatePreservation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatePreservation.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FD65F11827BD6600458B7B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		38FD65F31827BD6600458B7B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -181,6 +187,10 @@
 			children = (
 				38FD66271827BEC500458B7B /* SPItem.h */,
 				38FD66281827BEC500458B7B /* SPItem.m */,
+				384CA59E1827E073003C944C /* SPModel.h */,
+				384CA59F1827E073003C944C /* SPModel.m */,
+				384CA5A11827E3CA003C944C /* SPItem+Model.h */,
+				384CA5A21827E3CA003C944C /* SPItem+Model.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -351,9 +361,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384CA5A01827E073003C944C /* SPModel.m in Sources */,
 				38FD66381827CD8E00458B7B /* SPChildViewController.m in Sources */,
 				38FD65FE1827BD6600458B7B /* main.m in Sources */,
 				38FD66291827BEC500458B7B /* SPItem.m in Sources */,
+				384CA5A31827E3CA003C944C /* SPItem+Model.m in Sources */,
 				38FD66081827BD6600458B7B /* SPMainController.m in Sources */,
 				38FD66021827BD6600458B7B /* SPAppDelegate.m in Sources */,
 			);

@@ -7,6 +7,12 @@
 //
 
 #import "SPItem.h"
+#import "SPModel.h"
+
+@interface SPItem()
+@property (nonatomic, weak) SPModel *model;
+@property (nonatomic, strong) NSMutableArray *children;
+@end
 
 @implementation SPItem
 
